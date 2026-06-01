@@ -1,8 +1,20 @@
-venv/
+# Python
 __pycache__/
-*.pyc
-.ipynb_checkpoints/
-*.pkl
-.DS_Store
+*.py[cod]
 *.egg-info/
-dist/
+.env
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data
+data/raw/
+data/processed/
+
+# Models
+models/*.pkl
+
+# OS
+.DS_Store
+Thumbs.db
