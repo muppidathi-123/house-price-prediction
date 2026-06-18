@@ -27,6 +27,8 @@ import numpy as np
 import joblib
 import os
 
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 
 class HousePricePredictor:
     """
@@ -40,8 +42,8 @@ class HousePricePredictor:
 
     def __init__(
         self,
-        model_path: str        = 'models/best_model.pkl',
-        preprocessor_path: str = 'models/preprocessor.pkl'
+        model_path: str        = None,
+        preprocessor_path: str = None
     ):
         """
         Initialize predictor and load model artifacts.
@@ -50,8 +52,9 @@ class HousePricePredictor:
             model_path        : path to saved model .pkl file
             preprocessor_path : path to saved preprocessor .pkl file
         """
-        self.model_path        = model_path
-        self.preprocessor_path = preprocessor_path
+        # Use dynamic paths if none provided — works locally AND in cloud
+        self.model_path        = model_path or os.path.join(PROJECT_ROOT, 'models', 'best_model.pkl')
+        self.preprocessor_path = preprocessor_path or os.path.join(PROJECT_ROOT, 'models', 'preprocessor.pkl')
         self._load_artifacts()
 
     # ------------------------------------------------------------------
